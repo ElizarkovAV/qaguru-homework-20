@@ -15,7 +15,6 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class TestBase {
 
-
     @BeforeAll
     static void setUp() {
         Configuration.browser = BrowserstackDriver.class.getName();
@@ -32,12 +31,8 @@ public class TestBase {
     @AfterEach
     void addAttachments() {
         String sessionId = Selenide.sessionId().toString();
-
-        System.out.println(sessionId);
-        // Attach.screenshotAs("Last screenshot"); //todo fix screenshot
         Attach.pageSource();
         closeWebDriver();
-
         Attach.addVideo(sessionId);
     }
 }
